@@ -40,7 +40,11 @@
             addPickupPoints($container, response);
             $('.ui.fluid.selection.dropdown').dropdown('setting', 'onChange', function () {
               let id = ($('.ui.fluid.selection.dropdown').dropdown('get value'));
+              let text = ($('.ui.fluid.selection.dropdown').dropdown('get text'));
+              let splitString = text.split(', ');
               $(".pickup-point-id").val(id);
+              $(".pickup-point-address").val(splitString[1] + ', ' + splitString[0]);
+              $(".pickup-point-name").val(splitString[2]);
             });
           },
           onFailure: function (response) {

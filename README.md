@@ -50,6 +50,16 @@ parameters:
     sylius.form.type.checkout_select_shipping.validation_groups: ['sylius', 'checkout_select_shipping']
 ````
 
+### Step 5: Import scripts
+
+````shell
+bin/console sylius:install:assets
+````
+
+
+
+
+
 [ico-version]: https://img.shields.io/packagist/v/setono/sylius-pickup-point-plugin.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-travis]: https://travis-ci.com/Setono/SyliusPickupPointPlugin.svg?branch=master
