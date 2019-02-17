@@ -28,8 +28,9 @@ class DpdPrivateCzProvider implements ProviderInterface {
         $client = $this->getClient();
 
         try {
-            $address = $shippingAddress->getCity() . '+' . $shippingAddress->getStreet() . '+' . $shippingAddress->getPostcode();
-            $result = $client->getParcelShopsByAddress($address);
+            //$address = $shippingAddress->getCity() . '+' . $shippingAddress->getStreet() . '+' . $shippingAddress->getPostcode();
+            //$result = $client->getParcelShopsByAddress($address);
+            $result = $client->getAllParcelShops();
         } catch (\Exception $e) {
             return [];
         }
@@ -50,6 +51,11 @@ class DpdPrivateCzProvider implements ProviderInterface {
             $pickupPoints[] = $pickupPoint;
 
         }
+
+        usort($pickupPoints, function($a, $b)
+        {
+            return strcmp($a->getCity(), $b->getCity());
+        });
 
         return $pickupPoints;
     }
