@@ -60,23 +60,24 @@
   function addPickupPoints($container, pickupPoints) {
     if (document.querySelector('.ui.fluid.selection.dropdown') == null) {
       let list = '<div class="ui fluid selection dropdown pickup-point-dropdown" style="width:250px">' +
-        '<input type="hidden" name="pickupPoint">' +
-        '<i class="dropdown icon"></i>' +
-        '<div class="default text">Select Pickup Point</div>' +
-        '<div class="menu">'
+          '<input type="hidden" name="pickupPoint">' +
+          '<i class="dropdown icon"></i>' +
+          '<div class="default text">Vyberte partnerské místo</div>' +
+          '<div class="menu">'
       ;
 
       pickupPoints.forEach(function (element) {
         list += '<div class="item" data-value="' + element.id + '">';
-        list += ' ' + element.name;
-        list += ' ' + element.address;
-        list += ' ' + element.zipCode;
-        list += ' ' + element.country + '</div>'
+        list += ' ' + element.city;
+        list += ' ' + element.zip_code;
+        list += ', ' + element.address;
+        list += ', <strong>' + element.name + '</strong>';
+        list += '</div>'
       });
 
       list += '</div>' +
-        '</div>' +
-        '</div>'
+          '</div>' +
+          '</div>'
       ;
 
       $container.find('.content').append(list);
