@@ -1,0 +1,8 @@
+setono_sylius_pickup_point:
+    form:
+        shipping_method:
+            pickup_point_provider: Poskytovatel výdejních míst
+            select_pickup_point_provider: Vyberte poskytovatele výdejních míst
+    ui:
+        null_pickup_point_id: PickupPointId je null.
+        not_exists: PickupPointID neexistuje.

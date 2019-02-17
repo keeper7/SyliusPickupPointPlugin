@@ -1,0 +1,5 @@
+setono_pickup_point:
+    shipment:
+        pickup_point:
+            not_blank: Výdejní místo nesmí být prázdne.
+            not_exists: Výdejní místo neexistuje.
