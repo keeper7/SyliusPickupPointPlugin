@@ -20,13 +20,13 @@ final class Configuration implements ConfigurationInterface
         $rootNode
             ->addDefaultsIfNotSet()
             ->children()
-                ->arrayNode('post_nord')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->scalarNode('api_key')->end()
-                        ->scalarNode('mode')->defaultValue(PostNordProvider::MODE_PRODUCTION)->end()
-                    ->end()
-                ->end()
+            ->arrayNode('post_nord')
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->scalarNode('api_key')->defaultValue('')->end()
+            ->scalarNode('mode')->defaultValue(PostNordProvider::MODE_PRODUCTION)->end()
+            ->end()
+            ->end()
             ->end()
         ;
 
