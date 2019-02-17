@@ -40,7 +40,7 @@ class DpdPrivateCzProvider implements ProviderInterface {
             $pickupPoint = new PickupPoint(
                 $item['id'],
                 $item['company'],
-                $item['street'],
+                $item['street'] . ' ' . $item['house_number'],
                 $item['postcode'],
                 $item['city'],
                 'CZ',
@@ -73,7 +73,7 @@ class DpdPrivateCzProvider implements ProviderInterface {
         $pickupPoint = new PickupPoint(
             $data['id'],
             $data['company'],
-            $data['street'],
+            $data['street'] . ' ' . $data['house_number'],
             $data['postcode'],
             $data['city'],
             'CZ',
