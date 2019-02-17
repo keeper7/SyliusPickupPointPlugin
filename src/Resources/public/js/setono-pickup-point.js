@@ -19,6 +19,7 @@
         if (!url) {
           return;
         }
+        addEmptyPickuPoint($container);
 
         $element.api({
           method: 'GET',
@@ -57,25 +58,14 @@
     $container.find('.pickup-points').remove();
   }
 
-  function addPickupPoints($container, pickupPoints) {
+  function addEmptyPickuPoint($container) {
     if (document.querySelector('.ui.fluid.selection.dropdown') == null) {
-      let list = '<div class="ui fluid selection dropdown pickup-point-dropdown" style="width:250px">' +
+      let list = '<div class="ui fluid search selection dropdown loading disabled pickup-point-dropdown" style="width:250px">' +
           '<input type="hidden" name="pickupPoint">' +
           '<i class="dropdown icon"></i>' +
           '<div class="default text">Vyberte partnerské místo</div>' +
-          '<div class="menu">'
-      ;
-
-      pickupPoints.forEach(function (element) {
-        list += '<div class="item" data-value="' + element.id + '">';
-        list += ' ' + element.city;
-        list += ' ' + element.zip_code;
-        list += ', ' + element.address;
-        list += ', <strong>' + element.name + '</strong>';
-        list += '</div>'
-      });
-
-      list += '</div>' +
+          '<div class="menu">' +
+          '</div>' +
           '</div>' +
           '</div>'
       ;
@@ -86,9 +76,30 @@
 
       $dropdown.dropdown();
 
-      let id = $(".pickup-point-id").val();
-
-      $dropdown.dropdown('set selected', id);
     }
+
+  }
+
+  function addPickupPoints($container, pickupPoints) {
+    let list = '';
+    pickupPoints.forEach(function (element) {
+      list += '<div class="item" data-value="' + element.id + '">';
+      list += ' ' + element.city;
+      list += ' ' + element.zip_code;
+      list += ', ' + element.address;
+      list += ', <strong>' + element.name + '</strong>';
+      list += '</div>'
+    });
+
+    let $dropdown = $('.ui.fluid.selection.dropdown');
+
+    $container.find('.menu').append(list);
+    $dropdown.removeClass('loading');
+    $dropdown.removeClass('disabled');
+    $dropdown.dropdown();
+
+    let id = $(".pickup-point-id").val();
+
+    $dropdown.dropdown('set selected', id);
   }
 })(jQuery);
