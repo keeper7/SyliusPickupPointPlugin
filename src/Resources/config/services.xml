@@ -30,15 +30,6 @@
         </service>
 
         <!-- Providers -->
-        <service id="setono.sylius_pickup_point.provider.gls" class="Setono\SyliusPickupPointPlugin\Provider\GlsProvider">
-            <tag name="setono.sylius_pickup_point.provider" />
-        </service>
-
-        <service id="setono.sylius_pickup_point.provider.post_nord" class="Setono\SyliusPickupPointPlugin\Provider\PostNordProvider">
-            <argument key="$apiKey">%setono_sylius_pickup_point_post_nord.api_key%</argument>
-            <argument key="$mode">%setono_sylius_pickup_point_post_nord.mode%</argument>
-            <tag name="setono.sylius_pickup_point.provider" />
-        </service>
 
         <service id="setono.sylius_pickup_point.provider.dpd_private_cz" class="Setono\SyliusPickupPointPlugin\Provider\DpdPrivateCzProvider">
             <tag name="setono.sylius_pickup_point.provider" />

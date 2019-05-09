@@ -1,11 +1,4 @@
 (function ($) {
-  $(function () {
-    $('input.input-shipping-method').findPickupPoints();
-    $('input.input-shipping-method:checked').change();
-  });
-})(jQuery);
-
-(function ($) {
   'use strict';
 
   $.fn.extend({
@@ -64,7 +57,7 @@
 
   function addEmptyPickuPoint($container) {
     if (document.querySelector('.ui.fluid.selection.dropdown') == null) {
-      let list = '<div class="ui fluid search selection dropdown loading disabled pickup-point-dropdown" style="width:250px">' +
+      let list = '<div class="ui fluid search selection dropdown loading disabled pickup-point-dropdown">' +
           '<input type="hidden" name="pickupPoint">' +
           '<i class="dropdown icon"></i>' +
           '<div class="default text">Vyberte partnerské místo</div>' +
@@ -74,7 +67,7 @@
           '</div>'
       ;
 
-      $container.find('.content').append(list);
+      $container.find('.content .additional').append(list);
 
       let $dropdown = $('.ui.fluid.selection.dropdown');
 

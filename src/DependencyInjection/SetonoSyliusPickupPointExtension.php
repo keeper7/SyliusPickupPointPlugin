@@ -20,10 +20,6 @@ final class SetonoSyliusPickupPointExtension extends Extension
     {
         $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
 
-        if (isset($config['post_nord']['api_key'])) {
-            $container->setParameter('setono_sylius_pickup_point_post_nord.api_key', $config['post_nord']['api_key']);
-            $container->setParameter('setono_sylius_pickup_point_post_nord.mode', $config['post_nord']['mode']);
-        }
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
