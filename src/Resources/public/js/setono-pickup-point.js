@@ -30,7 +30,7 @@
             }
 
             removePickupPoints($container);
-            $('.pickup-point-dropdown').addClass('loading');
+            $dropdown.addClass('loading');
 
             return settings;
           },
@@ -44,8 +44,8 @@
               $(".pickup-point-id").val(id);
               $(".pickup-point-address").val(splitString[1] + ', ' + splitString[0]);
               $(".pickup-point-name").val(splitString[2]);
-              $dropdown.addClass('fullyloaded');
             });
+            $dropdown.addClass('fullyloaded');
           },
           onFailure: function (response) {
             console.log(response);
