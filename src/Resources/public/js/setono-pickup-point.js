@@ -12,7 +12,7 @@
         if (!url) {
           return;
         }
-        addEmptyPickuPoint($container);
+        addEmptyPickupPoint($container);
 
         $element.api({
           method: 'GET',
@@ -23,28 +23,36 @@
             settings.data = {
               _csrf_token: csrfToken
             };
+            let $dropdown = $('.pickup-point-dropdown');
+            if ($dropdown.hasClass('fullyloaded')) {
+              $element.api('abort');
+              return;
+            }
 
             removePickupPoints($container);
-            $container.addClass('loading');
+            $('.pickup-point-dropdown').addClass('loading');
 
             return settings;
           },
           onSuccess: function (response) {
             addPickupPoints($container, response);
-            $('.ui.fluid.selection.dropdown').dropdown('setting', 'onChange', function () {
-              let id = ($('.ui.fluid.selection.dropdown').dropdown('get value'));
-              let text = ($('.ui.fluid.selection.dropdown').dropdown('get text'));
+            let $dropdown = $('.pickup-point-dropdown');
+            $dropdown.dropdown('setting', 'onChange', function () {
+              let id = ($dropdown.dropdown('get value'));
+              let text = ($dropdown.dropdown('get text'));
               let splitString = text.split(', ');
               $(".pickup-point-id").val(id);
               $(".pickup-point-address").val(splitString[1] + ', ' + splitString[0]);
               $(".pickup-point-name").val(splitString[2]);
+              $dropdown.addClass('fullyloaded');
             });
           },
           onFailure: function (response) {
             console.log(response);
           },
           onComplete: function () {
-            $container.removeClass('loading');
+            let $dropdown = $('.pickup-point-dropdown');
+            $dropdown.removeClass('loading');
           }
         });
       });
@@ -55,9 +63,9 @@
     $container.find('.pickup-points').remove();
   }
 
-  function addEmptyPickuPoint($container) {
-    if (document.querySelector('.ui.fluid.selection.dropdown') == null) {
-      let list = '<div class="ui fluid search selection dropdown loading disabled pickup-point-dropdown">' +
+  function addEmptyPickupPoint($container) {
+    if (document.querySelector('.pickup-point-dropdown') == null) {
+      let list = '<div class="ui fluid search selection dropdown disabled pickup-point-dropdown">' +
           '<input type="hidden" name="pickupPoint">' +
           '<i class="dropdown icon"></i>' +
           '<div class="default text">Vyberte partnerské místo</div>' +
@@ -69,7 +77,7 @@
 
       $container.find('.content .additional').append(list);
 
-      let $dropdown = $('.ui.fluid.selection.dropdown');
+      let $dropdown = $('.pickup-point-dropdown');
 
       $dropdown.dropdown();
 
@@ -84,11 +92,11 @@
       list += ' ' + element.city;
       list += ' ' + element.zip_code;
       list += ', ' + element.address;
-      list += ', <strong>' + element.name + '</strong>';
+      list += ', ' + element.name;
       list += '</div>'
     });
 
-    let $dropdown = $('.ui.fluid.selection.dropdown');
+    let $dropdown = $('.pickup-point-dropdown');
 
     $container.find('.menu').append(list);
     $dropdown.removeClass('loading');
