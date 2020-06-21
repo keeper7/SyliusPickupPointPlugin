@@ -96,7 +96,7 @@ class DpdPrivateCzProvider implements ProviderInterface {
      */
     public function getClient(): DpdCzRestClient
     {
-        return new DpdCzRestClient('http://pickup.dpd.cz/api/');
+        return new DpdCzRestClient('https://pickup.dpd.cz/api/');
     }
 
 

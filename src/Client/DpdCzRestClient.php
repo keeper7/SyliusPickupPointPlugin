@@ -4,7 +4,7 @@ namespace Setono\SyliusPickupPointPlugin\Client;
 
 class DpdCzRestClient implements DpdCzRestClientInterface {
 
-    private $apiUrl = 'http://193.85.199.106/api/';
+    private $apiUrl = 'https://pickup.dpd.cz/api/';
 
     /**
      * DpdRestClient constructor.
